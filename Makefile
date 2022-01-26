@@ -3,7 +3,8 @@ BINDIR := $(PREFIX)/bin
 SHELL=bash
 GENGETOPTIONS=gengetoptions
 
-.PHONY: build clean check test testall coverage install uninstall
+#.PHONY: build clean check test testall coverage install uninstall
+.PHONY: build clean install uninstall
 
 build: bin/credential-gpg
 
@@ -33,13 +34,15 @@ clean:
 install: build
 	mkdir -p $(BINDIR)
 	install -m 755 bin/credential-gpg $(BINDIR)/credential-gpg
-	[ -e $(BINDIR)/git-credential-gpg ] || ln -s $(BINDIR)/credential-gpg $(BINDIR)/git-credential-gpg
+	[ -e $(BINDIR)/git-credential-gpg ] || ln -s credential-gpg $(BINDIR)/git-credential-gpg
 
 uninstall:
 	[ ! -e $(BINDIR)/git-credential-gpg ] || unlink $(BINDIR)/git-credential-gpg
 	rm -f $(BINDIR)/credential-gpg
 
-bin/credential-gpg:
+bin/credential-gpg: src/credential-gpg
 	mkdir -p bin
+	#$(GENGETOPTIONS) embed src/credential-gpg >bin/credential-gpg
 	cp src/credential-gpg bin/credential-gpg
+	chmod +x bin/credential-gpg
 	$(GENGETOPTIONS) embed --overwrite bin/credential-gpg
