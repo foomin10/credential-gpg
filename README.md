@@ -27,7 +27,7 @@ Or build and install it yourself. -->
 
 If you want to install in "/usr/local/bin", run below.
 
-Run below, and the script will install into "/usr/local/bin".
+Run following, and the script will install into "/usr/local/bin".
 
 ```sh
 git clone https://github.com/foomin10/credential-gpg.git
@@ -36,7 +36,7 @@ make
 make install
 ```
 
-Or run below if you want to install into "$HOME/bin".
+Or run following if you want to install into "$HOME/bin".
 
 ```sh
 git clone https://github.com/foomin10/credential-gpg.git
